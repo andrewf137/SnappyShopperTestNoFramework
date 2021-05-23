@@ -14,7 +14,7 @@ declare(strict_types=1);
 return [
     'DATABASE_HOST' => '127.0.0.1',
     'DATABASE_PORT' => '3306',
-    'DATABASE_NAME' => 'snappy_shopper_test',
+    'DATABASE_NAME' => 'data_base_name',
     'DATABASE_USER' => 'user',
     'DATABASE_PASS' => 'pass',
     'DATABASE_CHARSET' => 'utf8',
