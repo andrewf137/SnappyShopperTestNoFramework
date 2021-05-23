@@ -19,3 +19,4 @@ $dbBuilder->buildDB();
 // Create some random agents-properties relations
 $dbBuilder = new Src\System\DBPDO();
 $dbBuilder->loadFixtures();
+exit();

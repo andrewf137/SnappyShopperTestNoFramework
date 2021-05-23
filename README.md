@@ -1,7 +1,7 @@
 # Snappy Shopper test  (No Framework)
 
 ## Requirements
-* PHP >= 7.2.0
+* PHP >= 7.1.0
 * composer
 
 ## Instructions
