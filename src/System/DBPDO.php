@@ -40,7 +40,6 @@ class DBPDO
         $params = require 'config' . DIRECTORY_SEPARATOR . 'config.php';
 
         if(!$this->pdo){
-
             $dsn      = 'mysql:dbname=' . $params['DATABASE_NAME'] .
                         ';host=' . $params['DATABASE_HOST'] .
                         ';charset=' . $params['DATABASE_CHARSET'];
