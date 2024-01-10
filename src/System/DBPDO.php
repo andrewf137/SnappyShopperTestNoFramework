@@ -81,8 +81,6 @@ class DBPDO
         int $pageFrom,
         int $pageTo): void
     {
-        /** @var int $i */
-        $i = 1;
         /** @var array $property */
         foreach ($properties as $property) {
             $this->saveProperty($property);
