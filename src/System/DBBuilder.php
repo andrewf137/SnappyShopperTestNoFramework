@@ -28,28 +28,30 @@ class DBBuilder
     public function buildDB()
     {
         // Retrieve DB parameters
-	    $params = require 'config' . DIRECTORY_SEPARATOR . 'config.php';
-	    $db = $params['DATABASE_NAME'];
-	    $host = $params['DATABASE_HOST'];
-	    $port = $params['DATABASE_PORT'];
-	    $user = $params['DATABASE_USER'];
-	    $pass = $params['DATABASE_PASS'];
-	    $charset = $params['DATABASE_CHARSET'];
+	$params = require 'config' . DIRECTORY_SEPARATOR . 'config.php';
+	$db = $params['DATABASE_NAME'];
+	$host = $params['DATABASE_HOST'];
+	$port = $params['DATABASE_PORT'];
+	$user = $params['DATABASE_USER'];
+	$pass = $params['DATABASE_PASS'];
+	$charset = $params['DATABASE_CHARSET'];
 
-	    // Create a database server connection without specifying db name
+	// Create a database server connection without specifying db name
         $dsn = "mysql:host=$host;port=$port;charset=$charset;";
-	    $this->pdo = new PDO($dsn, $user, $pass, [PDO::ATTR_PERSISTENT => true]);
+	$this->pdo = new PDO($dsn, $user, $pass, [PDO::ATTR_PERSISTENT => true]);
 
-	    // Drop schema in case it exists
-	    $this->pdo->exec("DROP SCHEMA $db;");
+	// Drop schema in case it exists
+	$this->pdo->exec("DROP SCHEMA $db;");
 
-	    // Create db
-	    $this->pdo->exec("CREATE DATABASE `$db`;
-                CREATE USER '$user'@'$host' IDENTIFIED BY '$pass';
-                GRANT ALL ON `$db`.* TO '$user'@'$host';
-                FLUSH PRIVILEGES;");
+	// Create db
+	$this->pdo->exec("
+            CREATE DATABASE `$db`;
+            CREATE USER '$user'@'$host' IDENTIFIED BY '$pass';
+            GRANT ALL ON `$db`.* TO '$user'@'$host';
+            FLUSH PRIVILEGES;
+	");
 
-	    // Select db just created
+	// Select db just created
         $this->pdo->exec("USE $db;");
 
         $this->pdo->exec('CREATE TABLE agents (name VARCHAR(32) NOT NULL, PRIMARY KEY(name)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
